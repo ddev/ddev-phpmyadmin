@@ -4,3 +4,4 @@ name: phpmyadmin
 
 project_files:
 - docker-compose.phpmyadmin.yaml
+- commands/host/phpmyadmin
