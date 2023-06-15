@@ -18,9 +18,10 @@ setup() {
 
 health_checks() {
   set +u # bats-assert has unset variables
-  echo "# curl https://${PROJNAME}.ddev.site/" >&3
-  curl --fail -s -I https://${PROJNAME}.ddev.site/ >/tmp/curlout.txt
+#  echo "# about to curl https://${PROJNAME}.ddev.site/" >&3
+  curl --fail -s -I https://${PROJNAME}.ddev.site:8037 >/tmp/curlout.txt
   assert_success
+#  echo "# about to grep" >&3
   grep "set-cookie: phpMyAdmin_https" /tmp/curlout.txt
 }
 
