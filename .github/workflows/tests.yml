@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
   schedule:
-  - cron: '25 08 * * *'
+  - cron: '25 09 * * *'
 
   workflow_dispatch:
     inputs:
@@ -20,7 +20,7 @@ defaults:
     shell: bash
 
 env:
-  NIGHTLY_DDEV_PR_URL: "https://nightly.link/ddev/ddev/actions/runs/1720215802/ddev-linux-amd64.zip"
+  # NIGHTLY_DDEV_PR_URL: "https://nightly.link/ddev/ddev/actions/runs/1720215802/ddev-linux-amd64.zip"
   # Allow ddev get to use a github token to prevent rate limiting by tests
   DDEV_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   # Allow `--HEAD` flag when running tests against HEAD
@@ -38,7 +38,7 @@ jobs:
 #        ddev_version: [stable, edge, HEAD, PR]
       fail-fast: false
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v3
@@ -47,8 +47,8 @@ jobs:
       uses: Homebrew/actions/setup-homebrew@master
     - name: Environment setup
       run: |
-        brew install bats-core mkcert
         mkcert -install
+        brew tap kaos/shell && brew install bats-core bats-assert bats-support jq mkcert
 
     - name: Use ddev stable
       if: matrix.ddev_version == 'stable'
