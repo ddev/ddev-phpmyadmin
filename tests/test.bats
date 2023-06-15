@@ -23,6 +23,9 @@ health_checks() {
   assert_success
 #  echo "# about to grep" >&3
   grep "set-cookie: phpMyAdmin_https" /tmp/curlout.txt
+  DDEV_DEBUG=true ddev phpmyadmin
+#  assert_success
+  assert_output "FULLURL https://${PROJNAME}.ddev.site:8037"
 }
 
 teardown() {
