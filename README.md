@@ -3,8 +3,6 @@
 # ddev-phpmyadmin <!-- omit in toc -->
 
 * [What is ddev-phpmyadmin?](#what-is-ddev-phpmyadmin)
-* [Components of the repository](#components-of-the-repository)
-* [Getting started](#getting-started)
 
 ## What is ddev-phpmyadmin?
 
