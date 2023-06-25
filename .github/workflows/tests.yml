@@ -51,8 +51,8 @@ jobs:
       uses: Homebrew/actions/setup-homebrew@master
     - name: Environment setup
       run: |
-        mkcert -install
         brew tap kaos/shell && brew install bats-core bats-assert bats-support jq mkcert
+        mkcert -install
 
     - name: Use ddev stable
       if: matrix.ddev_version == 'stable'
