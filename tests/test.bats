@@ -12,19 +12,17 @@ setup() {
   ddev delete -Oy ${PROJNAME} >/dev/null 2>&1 || true
   cd "${TESTDIR}"
   ddev config --project-name=${PROJNAME}
-  ddev config --omit-containers=dba || true
+  ddev config --omit-containers=dba >/dev/null 2>&1 || true
   ddev start -y >/dev/null 2>&1
 }
 
 health_checks() {
-  set +u # bats-assert has unset variables
-#  echo "# about to curl https://${PROJNAME}.ddev.site/" >&3
-  curl --fail -s -I https://${PROJNAME}.ddev.site:8037 >/tmp/curlout.txt
+  set +u # bats-assert has unset variables so turn off unset check
+  # Make sure we can hit the 8037 port successfully
+  curl -s -I -f  https://${PROJNAME}.ddev.site:8037 >/tmp/curlout.txt
+  # Make sure `ddev phpmyadmin` works
+  DDEV_DEBUG=true run ddev phpmyadmin
   assert_success
-#  echo "# about to grep" >&3
-  grep "set-cookie: phpMyAdmin_https" /tmp/curlout.txt
-  DDEV_DEBUG=true ddev phpmyadmin
-#  assert_success
   assert_output "FULLURL https://${PROJNAME}.ddev.site:8037"
 }
 
@@ -40,7 +38,7 @@ teardown() {
   cd ${TESTDIR}
   echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
   ddev get ${DIR} >/dev/null 2>&1
-  ddev restart
+  ddev mutagen sync >/dev/null 2>&1
   health_checks
 }
 

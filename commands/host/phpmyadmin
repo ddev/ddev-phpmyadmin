@@ -5,6 +5,9 @@
 ## Usage: phpmyadmin
 ## Example: "ddev phpmyadmin"
 
+DDEV_PHPMYADMIN_PORT=8036
+DDEV_PHPMYADMIN_HTTPS_PORT=8037
+
 FULLURL=${DDEV_PRIMARY_URL}
 HTTPS=""
 if [ ${DDEV_PRIMARY_URL%://*} = "https" ]; then HTTPS=true; fi
@@ -27,7 +30,7 @@ if [ -n "${1:-}" ] ; then
   FULLURL="${FULLURL}${1}";
 fi
 
-if [ ! -z ${DDEV_DEBUG:-} ]; then
+if [ "${DDEV_DEBUG:-}" = "true" ]; then
     printf "FULLURL $FULLURL\n" && exit 0
 fi
 
