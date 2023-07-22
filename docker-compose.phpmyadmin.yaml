@@ -20,7 +20,6 @@ services:
     - HTTP_EXPOSE=8036:80
     - HTTPS_EXPOSE=8037:80
     healthcheck:
-      test: ["CMD", "curl", "-I", "-s", "-f", "http://localhost:80"]
       interval: 120s
       timeout: 2s
       retries: 1
