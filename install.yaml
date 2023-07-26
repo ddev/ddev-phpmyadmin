@@ -4,4 +4,14 @@ name: phpmyadmin
 
 project_files:
 - docker-compose.phpmyadmin.yaml
+- docker-compose.phpmyadmin-norouter.yaml
 - commands/host/phpmyadmin
+
+post_install_actions:
+  - |
+    #ddev-description:If router disabled, directly expose port
+    #
+    if ( {{ contains "ddev-router" (list .DdevGlobalConfig.omit_containers | toString) }} ); then
+      printf "#ddev-generated\nservices:\n  phpmyadmin:\n    ports:\n      - 8036:80\n" > docker-compose.phpmyadmin-norouter.yaml
+    fi
+
