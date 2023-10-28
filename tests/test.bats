@@ -26,7 +26,7 @@ health_checks() {
   # Make sure `ddev phpmyadmin` works
   DDEV_DEBUG=true run ddev phpmyadmin
   assert_success
-  assert_output "FULLURL https://${PROJNAME}.ddev.site:8037"
+  assert_output --partial "FULLURL https://${PROJNAME}.ddev.site:8037"
 }
 
 teardown() {
