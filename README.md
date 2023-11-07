@@ -12,4 +12,6 @@ In DDEV v1.22+ PhpMyAdmin will not be provided by default, but can be added with
 
 `ddev get ddev/ddev-phpmyadmin`
 
+You can run PhpMyAdmin easily with the command `ddev phpmyadmin` after installing this add-on.
+
 **Contributed and maintained by [@rfay](https://github.com/rfay)**

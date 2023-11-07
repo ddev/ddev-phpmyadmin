@@ -14,4 +14,6 @@ post_install_actions:
     if ( {{ contains "ddev-router" (list .DdevGlobalConfig.omit_containers | toString) }} ); then
       printf "#ddev-generated\nservices:\n  phpmyadmin:\n    ports:\n      - 8036:80\n" > docker-compose.phpmyadmin-norouter.yaml
     fi
+  - | 
+    echo "You can now use 'ddev phpmyadmin' to launch PhpMyAdmin"
 
