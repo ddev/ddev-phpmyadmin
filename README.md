@@ -8,10 +8,10 @@
 
 This add-on provides a phpMyAdmin service for [DDEV](https://github.com/ddev/ddev/). 
 
-In DDEV v1.22+ PhpMyAdmin will not be provided by default, but can be added with this add-on:
+In DDEV v1.22+ phpMyAdmin will not be provided by default, but can be added with this add-on:
 
 `ddev get ddev/ddev-phpmyadmin`
 
-You can run PhpMyAdmin easily with the command `ddev phpmyadmin` after installing this add-on.
+You can run phpMyAdmin easily with the command `ddev phpmyadmin` after installing this add-on.
 
 **Contributed and maintained by [@rfay](https://github.com/rfay)**
