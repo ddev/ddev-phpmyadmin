@@ -5,6 +5,11 @@
 ## Usage: phpmyadmin
 ## Example: "ddev phpmyadmin"
 
+if [ "${DDEV_PROJECT_STATUS-running}" != "running" ]; then
+  echo "Project ${DDEV_PROJECT} is not running, starting it"
+  ddev start
+fi
+
 DDEV_PHPMYADMIN_PORT=8036
 DDEV_PHPMYADMIN_HTTPS_PORT=8037
 
