@@ -21,7 +21,7 @@ defaults:
 
 # This is required for "gautamkrishnar/keepalive-workflow"
 permissions:
-  contents: write
+  actions: write
 
 env:
   # Allow ddev get to use a GitHub token to prevent rate limiting by tests
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    - uses: ddev/github-action-add-on-test@v1
+    - uses: ddev/github-action-add-on-test@v2
       with:
         ddev_version: "stable"
         token: ${{ secrets.GITHUB_TOKEN }}
