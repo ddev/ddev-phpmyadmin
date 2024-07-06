@@ -7,6 +7,13 @@ project_files:
 - docker-compose.phpmyadmin-norouter.yaml
 - commands/host/phpmyadmin
 
+pre_install_actions:
+  # Ensure we're on DDEV 1.23+. It's need for the `phpmyadmin` command (launch by port).
+  - |
+    #ddev-nodisplay
+    #ddev-description:Checking DDEV version
+    (ddev debug capabilities | grep corepack >/dev/null) || (echo "Please upgrade DDEV to v1.23+ to use this add-on." && false)
+
 post_install_actions:
   - |
     #ddev-description:If router disabled, directly expose port
@@ -14,6 +21,6 @@ post_install_actions:
     if ( {{ contains "ddev-router" (list .DdevGlobalConfig.omit_containers | toString) }} ); then
       printf "#ddev-generated\nservices:\n  phpmyadmin:\n    ports:\n      - 8036:80\n" > docker-compose.phpmyadmin-norouter.yaml
     fi
-  - | 
+  - |
     echo "You can now use 'ddev phpmyadmin' to launch PhpMyAdmin"
 
