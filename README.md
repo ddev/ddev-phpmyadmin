@@ -6,12 +6,22 @@
 
 ## What is ddev-phpmyadmin?
 
-This add-on provides a phpMyAdmin service for [DDEV](https://github.com/ddev/ddev/). 
+This add-on provides a phpMyAdmin service for [DDEV](https://github.com/ddev/ddev/).
 
-In DDEV v1.22+ phpMyAdmin will not be provided by default, but can be added with this add-on:
+In DDEV v1.22+ phpMyAdmin is not provided by default, but it can be added with this add-on:
 
-`ddev get ddev/ddev-phpmyadmin`
+```
+ddev get ddev/ddev-phpmyadmin
+ddev restart
+```
 
-You can run phpMyAdmin easily with the command `ddev phpmyadmin` after installing this add-on.
+You can run phpMyAdmin easily with the command after installing this add-on:
+
+```
+ddev phpmyadmin
+```
+
+> [!TIP]
+> For Gitpod: The `ddev phpmyadmin` command can open a blank page in preview mode, open the link in a new browser tab/window to make it work.
 
 **Contributed and maintained by [@rfay](https://github.com/rfay)**
