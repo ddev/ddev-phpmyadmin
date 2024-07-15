@@ -4,7 +4,7 @@ name: phpmyadmin
 
 project_files:
 - docker-compose.phpmyadmin.yaml
-- docker-compose.phpmyadmin-norouter.yaml
+- docker-compose.phpmyadmin_norouter.yaml
 - commands/host/phpmyadmin
 
 pre_install_actions:
@@ -19,7 +19,7 @@ post_install_actions:
     #ddev-description:If router disabled, directly expose port
     #
     if ( {{ contains "ddev-router" (list .DdevGlobalConfig.omit_containers | toString) }} ); then
-      printf "#ddev-generated\nservices:\n  phpmyadmin:\n    ports:\n      - 8036:80\n" > docker-compose.phpmyadmin-norouter.yaml
+      printf "#ddev-generated\nservices:\n  phpmyadmin:\n    ports:\n      - 8036:80\n" > docker-compose.phpmyadmin_norouter.yaml
     fi
   - |
     echo "You can now use 'ddev phpmyadmin' to launch PhpMyAdmin"
