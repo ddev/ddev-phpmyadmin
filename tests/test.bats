@@ -45,6 +45,7 @@ teardown() {
   health_checks
 }
 
+
 @test "install from release" {
   set -eu -o pipefail
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
@@ -53,4 +54,15 @@ teardown() {
   ddev restart >/dev/null 2>&1
   health_checks
 }
+
+@test "install from directory with nonstandard port" {
+  set -eu -o pipefail
+  cd ${TESTDIR}
+  ddev config --router-http-port=8080 --router-https-port=8443
+  echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
+  ddev get ${DIR} >/dev/null 2>&1
+  ddev mutagen sync >/dev/null 2>&1
+  health_checks
+}
+
 

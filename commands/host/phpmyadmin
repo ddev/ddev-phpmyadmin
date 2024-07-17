@@ -7,9 +7,8 @@
 
 DDEV_PHPMYADMIN_PORT=8036
 DDEV_PHPMYADMIN_HTTPS_PORT=8037
-
 if [ ${DDEV_PRIMARY_URL%://*} = "http" ] || [ -n "${GITPOD_WORKSPACE_ID:-}" ] || [ "${CODESPACES:-}" = "true" ]; then
-    ddev launch $DDEV_PRIMARY_URL:$DDEV_PHPMYADMIN_PORT
+    ddev launch :$DDEV_PHPMYADMIN_PORT
 else
-    ddev launch $DDEV_PRIMARY_URL:$DDEV_PHPMYADMIN_HTTPS_PORT
+    ddev launch :$DDEV_PHPMYADMIN_HTTPS_PORT
 fi
