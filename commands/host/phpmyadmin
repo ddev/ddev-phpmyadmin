@@ -8,7 +8,7 @@
 DDEV_PHPMYADMIN_PORT=8036
 DDEV_PHPMYADMIN_HTTPS_PORT=8037
 if [ ${DDEV_PRIMARY_URL%://*} = "http" ] || [ -n "${GITPOD_WORKSPACE_ID:-}" ] || [ "${CODESPACES:-}" = "true" ]; then
-    if [ -n "${GITPOD_WORKSPACE_ID:-}" ]; then
+    if [ -n "${GITPOD_WORKSPACE_ID:-}" ] && [ -z "${DDEV_DEBUG:-}" ]; then
         # "gp preview" opens a blank page for PhpMyAdmin, use "xdg-open" instead
         xdg-open "$(DDEV_DEBUG=true ddev launch :$DDEV_PHPMYADMIN_PORT | grep "FULLURL" | awk '{print $2}')"
     else
