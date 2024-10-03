@@ -21,7 +21,4 @@ You can run phpMyAdmin easily with the command after installing this add-on:
 ddev phpmyadmin
 ```
 
-> [!TIP]
-> For Gitpod: The `ddev phpmyadmin` command can open a blank page in preview mode, open the link in a new browser tab/window to make it work.
-
 **Contributed and maintained by [@rfay](https://github.com/rfay)**
