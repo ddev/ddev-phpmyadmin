@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
   schedule:
-  - cron: '25 09 * * *'
+  - cron: '01 07 * * *'
 
   workflow_dispatch:
     inputs:
@@ -15,35 +15,28 @@ on:
         required: false
         default: false
 
-defaults:
-  run:
-    shell: bash
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
-# This is required for "gautamkrishnar/keepalive-workflow"
+# This is required for "gautamkrishnar/keepalive-workflow", see "ddev/github-action-add-on-test"
 permissions:
   actions: write
 
-env:
-  # Allow ddev get to use a GitHub token to prevent rate limiting by tests
-  DDEV_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 jobs:
   tests:
-    defaults:
-      run:
-        shell: bash
-
     strategy:
       matrix:
         ddev_version: [stable, HEAD]
       fail-fast: false
 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: ddev/github-action-add-on-test@v2
-      with:
-        ddev_version: "stable"
-        token: ${{ secrets.GITHUB_TOKEN }}
-        addon_repository: ${{ env.GITHUB_REPOSITORY }}
-        addon_ref: ${{ env.GITHUB_REF }}
+      - uses: ddev/github-action-add-on-test@v2
+        with:
+          ddev_version: ${{ matrix.ddev_version }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          debug_enabled: ${{ github.event.inputs.debug_enabled }}
+          addon_repository: ${{ env.GITHUB_REPOSITORY }}
+          addon_ref: ${{ env.GITHUB_REF }}
