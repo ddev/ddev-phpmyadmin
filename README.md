@@ -1,3 +1,4 @@
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
 [![tests](https://github.com/ddev/ddev-phpmyadmin/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/ddev/ddev-phpmyadmin/actions/workflows/tests.yml?query=branch%3Amain)
 [![last commit](https://img.shields.io/github/last-commit/ddev/ddev-phpmyadmin)](https://github.com/ddev/ddev-phpmyadmin/commits)
 [![release](https://img.shields.io/github/v/release/ddev/ddev-phpmyadmin)](https://github.com/ddev/ddev-phpmyadmin/releases/latest)
